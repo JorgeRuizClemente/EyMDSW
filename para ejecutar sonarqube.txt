@@ -1,0 +1,40 @@
+hay que abrir el docker siempre
+~~~~~~~~~~~~~~~~~~~~~
+C:\Users\kokit\Documents\TIID05B\EyMDSW\P2_EyMDSW\sonarqube\scripts> cd .\sonarqube\
+
+C:\Users\kokit\Documents\TIID05B\EyMDSW\P2_EyMDSW\sonarqube\scripts> Set-ExecutionPolicy Bypass -Scope Process
+
+C:\Users\kokit\Documents\TIID05B\EyMDSW\P2_EyMDSW\sonarqube\scripts\sonarqube> .\01_verificar.ps1
+
+C:\Users\kokit\Documents\TIID05B\EyMDSW\P2_EyMDSW\sonarqube\scripts\sonarqube> .\02_levantar.ps1
+
+$env:SONAR_TOKEN = "<<token del sonarqube>>"
+
+~~~~~~~~~~~~~~~~~~~~~
+
+C:\Users\kokit\Documents\TIID05B\EyMDSW\P2_EyMDSW\sonarqube\scripts> cd .\sonarqube\
+
+C:\Users\kokit\Documents\TIID05B\EyMDSW\P2_EyMDSW\sonarqube\scripts\sonarqube> .\03_analizar.ps1
+
+[OK] Analisis enviado. Abre el tablero:
+     http://localhost:9000/dashboard?id=selenium-saucedemo <<ctrl + clic>>
+
+~~~~~~~~~~~~~~~~~~~~~
+en esta ruta cambiar el utils.py para calar el codigo
+C:\Users\kokit\Documents\TIID05B\EyMDSW\P2_EyMDSW\sonarqube\scripts\pages
+
+~~~~~~~~~~~~~~~~~~~~~
+pip install pytest-cov
+PS C:\Users\kokit\Documents\TIID05B\EyMDSW\P2_EyMDSW\sonarqube\scripts> pip install pytest-cov
+
+pytest --cov=pages --cov-report=term-missing
+PS C:\Users\kokit\Documents\TIID05B\EyMDSW\P2_EyMDSW\sonarqube\scripts> pytest --cov=pages --cov-report=term-missing <<da error>>
+
+python -m pytest --cov=pages --cov-report=term-missing
+PS C:\Users\kokit\Documents\TIID05B\EyMDSW\P2_EyMDSW\sonarqube\scripts> python -m pytest --cov=pages --cov-report=term-missing <<funciona bien>>
+
+python -m pytest --cov=pages --cov-report=xml
+PS C:\Users\kokit\Documents\TIID05B\EyMDSW\P2_EyMDSW\sonarqube\scripts> python -m pytest --cov=pages --cov-report=xml
+
+docker run --rm --network host -v "${PWD}:/usr/src" sonarsource/sonar-scanner-cli
+PS C:\Users\kokit\Documents\TIID05B\EyMDSW\P2_EyMDSW\sonarqube\scripts> docker run --rm --network host -v "${PWD}:/usr/src" sonarsource/sonar-scanner-cli

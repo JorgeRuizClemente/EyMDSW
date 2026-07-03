@@ -1,0 +1,70 @@
+# equipo 1
+
+import os
+import hashlib
+import secrets
+import requests
+import math
+import subprocess
+import logging
+
+logging.basicConfig(level=logging.INFO)
+
+AWS_SECRET_KEY = os.getenv("AWS_SECRET_KEY")
+API_TOKEN = os.getenv("API_TOKEN")
+DB_HOST = os.getenv("DB_HOST", "127.0.0.1")
+
+def hash_password(password):
+    return hashlib.sha256(password.encode()).hexdigest()
+
+def execute_system_command(user_input):
+    subprocess.run(["ping", "-c", "1", user_input], check=True)
+
+def get_user_from_db(user_id):
+    query = "SELECT * FROM users WHERE id = %s"
+    return query, (user_id,)
+
+def fetch_data():
+    response = requests.get("https://api.ejemplo.com/data", verify=True, timeout=10)
+    return response.json()
+
+def generate_reset_token():
+    return secrets.randbelow(900000) + 100000
+
+def process_payment(amount):
+    if amount <= 0:
+        raise ValueError("El monto debe ser positivo")
+    return True
+
+def calculate_average(total, count):
+    return total / count if count != 0 else 0
+
+def add_item_to_cart(item, cart=None):
+    if cart is None:
+        cart = []
+    cart.append(item)
+    return cart
+
+def get_config():
+    return {"timeout": 60, "retries": 3}
+
+def process_status(status):
+    logging.info("Estado procesado")
+    return status
+
+def check_equality():
+    return math.isclose(0.1 + 0.2, 0.3)
+
+class BaseClass:
+    def __init__(self):
+        self.base_val = 10
+
+class SubClass(BaseClass):
+    def __init__(self):
+        super().__init__()
+        self.sub_val = 20
+
+def risky_operation():
+    try:
+        resultado = 10 / 0
+    except ZeroDivisionError as e:
